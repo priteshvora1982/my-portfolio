@@ -8,196 +8,144 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:     #FFFFFF;
-      --text:   #111111;
-      --muted:  rgba(17, 17, 17, 0.45);
+      --bg: #FFFFFF;
+      --text: #111111;
+      --muted: rgba(17,17,17,0.45);
       --accent: #E03A1E;
-      --glow:   rgba(224, 58, 30, 0.18);
+      --glow: rgba(224,58,30,0.18);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-
     body {
       background: var(--bg);
       color: var(--text);
       font-family: "Jost", sans-serif;
       font-weight: 300;
       min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
       overflow-x: hidden;
       cursor: none;
     }
-
-    /* Grain texture */
     body::before {
       content: "";
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.045;
-      pointer-events: none;
-      z-index: 100;
+      opacity: 0.045; pointer-events: none; z-index: 100;
     }
-
-    /* Breathing amber glow */
     body::after {
       content: "";
       position: fixed;
-      width: 70vw;
-      height: 70vw;
-      border-radius: 50%;
+      width: 70vw; height: 70vw; border-radius: 50%;
       background: radial-gradient(circle, var(--glow) 0%, transparent 68%);
-      top: 40%;
-      left: 30%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
+      top: 40%; left: 30%; transform: translate(-50%,-50%);
+      pointer-events: none; z-index: 0;
       animation: breathe 9s ease-in-out infinite;
-      z-index: 0;
     }
-
     @keyframes breathe {
-      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-      50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.2); }
+      0%,100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+      50%      { opacity: 1;   transform: translate(-50%,-50%) scale(1.2); }
     }
-
-    /* Custom cursor */
     #cursor {
-      position: fixed;
-      width: 7px;
-      height: 7px;
-      background: var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: screen;
-      transition: transform 0.08s ease;
+      position: fixed; width: 7px; height: 7px;
+      background: var(--accent); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: screen; transition: transform 0.08s ease;
     }
 
     /* ── Header ── */
     header {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: relative; z-index: 10;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 2.25rem 3.5rem;
       animation: fadeDown 1s ease both;
     }
-
     .monogram {
-      font-family: "Cormorant", serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: 1.15rem;
-      letter-spacing: 0.06em;
-      color: var(--accent);
+      font-family: "Cormorant", serif; font-style: italic; font-weight: 300;
+      font-size: 1.15rem; letter-spacing: 0.06em; color: var(--accent);
     }
-
-    .stamp {
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
+    .stamp { font-size: 0.65rem; letter-spacing: 0.28em; color: var(--muted); text-transform: uppercase; }
 
     /* ── Hero ── */
     main {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 3.5rem;
+      position: relative; z-index: 10;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6vh 3.5rem; min-height: 82vh;
     }
-
     .name {
-      font-family: "Cormorant", serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(4.5rem, 11.5vw, 12rem);
-      line-height: 0.88;
-      letter-spacing: -0.025em;
-      color: var(--text);
-      animation: fadeUp 1.3s ease 0.15s both;
-      margin-bottom: 2.25rem;
+      font-family: "Cormorant", serif; font-style: italic; font-weight: 300;
+      font-size: clamp(4.5rem,11.5vw,12rem); line-height: 0.88;
+      letter-spacing: -0.025em; color: var(--text);
+      animation: fadeUp 1.3s ease 0.15s both; margin-bottom: 2.25rem;
     }
-
     .tagline {
-      font-family: "Jost", sans-serif;
-      font-weight: 300;
-      font-size: 1.1rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      margin-bottom: 2rem;
+      font-weight: 300; font-size: 1.1rem; color: var(--muted);
+      letter-spacing: 0.04em; margin-bottom: 2rem;
       animation: fadeUp 1.3s ease 0.35s both;
     }
-
     .ruled {
-      width: 100%;
-      height: 1px;
+      width: 100%; height: 1px;
       background: linear-gradient(90deg, var(--accent) 0%, rgba(200,129,58,0.15) 55%, transparent 80%);
-      transform-origin: left center;
-      animation: growLine 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.55s both;
-      margin-bottom: 1.85rem;
+      transform-origin: left center; margin-bottom: 1.85rem;
+      animation: growLine 1.5s cubic-bezier(0.77,0,0.175,1) 0.55s both;
     }
-
     @keyframes growLine {
       from { transform: scaleX(0); opacity: 0; }
       to   { transform: scaleX(1); opacity: 1; }
     }
+    .meta { display: flex; align-items: center; gap: 1.4rem; animation: fadeUp 1s ease 0.8s both; }
+    .tag { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+    .pip { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); opacity: 0.55; flex-shrink: 0; }
 
-    .meta {
-      display: flex;
-      align-items: center;
-      gap: 1.4rem;
-      animation: fadeUp 1s ease 0.8s both;
+    /* ── Shared section styles ── */
+    .bio, .experience {
+      position: relative; z-index: 10;
+      padding: 5rem 3.5rem;
+      border-top: 1px solid rgba(17,17,17,0.07);
+    }
+    .section-label {
+      display: block; font-size: 0.62rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 2.25rem;
     }
 
-    .tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
+    /* ── Bio ── */
+    .bio { max-width: 700px; }
+    .bio p {
+      font-family: "Cormorant", serif; font-style: italic; font-weight: 300;
+      font-size: clamp(1.2rem,2vw,1.45rem); line-height: 1.8;
+      color: var(--text); margin-bottom: 1.5rem;
     }
+    .bio p:last-child { margin-bottom: 0; }
 
-    .pip {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
+    /* ── Experience ── */
+    .timeline {
+      border-left: 1px solid var(--accent);
+      padding-left: 2rem; max-width: 560px;
+    }
+    .timeline-entry { padding-bottom: 2.5rem; position: relative; }
+    .timeline-entry:last-child { padding-bottom: 0; }
+    .timeline-entry::before {
+      content: ""; position: absolute;
+      left: -2.28rem; top: 0.42rem;
+      width: 5px; height: 5px; border-radius: 50%;
       background: var(--accent);
-      opacity: 0.55;
-      flex-shrink: 0;
     }
+    .t-year { display: block; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .t-role { font-family: "Cormorant", serif; font-style: italic; font-weight: 300; font-size: 1.25rem; color: var(--text); margin-bottom: 0.3rem; }
+    .t-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
 
-    /* ── Footer facts ── */
+    /* ── Footer ── */
     footer {
-      position: relative;
-      z-index: 10;
-      padding: 2.75rem 3.5rem;
-      border-top: 1px solid rgba(237, 232, 224, 0.06);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-      animation: fadeUp 1s ease 1.1s both;
+      position: relative; z-index: 10;
+      border-top: 1px solid rgba(17,17,17,0.07);
+      padding: 1.75rem 3.5rem;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
-    .fact-num {
-      display: block;
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
-      color: var(--accent);
-      font-weight: 400;
-      margin-bottom: 0.65rem;
+    .footer-copy { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+    .footer-link {
+      font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted);
+      text-decoration: none; border-bottom: 1px solid rgba(17,17,17,0.18);
+      padding-bottom: 1px; transition: color 0.2s, border-color 0.2s;
     }
-
-    .fact-text {
-      font-size: 0.8rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
+    .footer-link:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ── Animations ── */
     @keyframes fadeUp {
@@ -211,9 +159,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      header, main, footer { padding: 1.5rem; }
-      footer { grid-template-columns: 1fr; gap: 1.75rem; }
-      .name  { font-size: clamp(3.75rem, 18vw, 6rem); }
+      header, main, .bio, .experience, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .name { font-size: clamp(3.75rem,18vw,6rem); }
     }
   </style>
 </head>
@@ -237,19 +184,37 @@
     </div>
   </main>
 
+  <section class="bio">
+    <span class="section-label">Bio</span>
+    <p>I'm PV — The Clumsy Boy. Founder. Tinkerer. Restless by nature, accidental by design.</p>
+    <p>I've built a career out of doing things wrong until they go right. I was clumsy once — really committed to it — and then somehow managed to pull it off again. Twice. The second time wasn't even planned, which is honestly the most on-brand thing about me.</p>
+    <p>I don't have a five-year plan. I have a bias for action, a high tolerance for stumbling, and a weird belief that the best way to figure something out is to just start. If you're into building things, breaking things, or watching someone do both at the same time — we'll get along just fine.</p>
+  </section>
+
+  <section class="experience">
+    <span class="section-label">Experience</span>
+    <div class="timeline">
+      <div class="timeline-entry">
+        <span class="t-year">2022 – Present</span>
+        <div class="t-role">Founder, Stumble Studio</div>
+        <p class="t-desc">Building products from first principles — obsessing over the details others overlook.</p>
+      </div>
+      <div class="timeline-entry">
+        <span class="t-year">2019 – 2022</span>
+        <div class="t-role">Product Lead, Axiom Labs</div>
+        <p class="t-desc">Led a small team shipping developer tools used by thousands; learned more from what broke than what worked.</p>
+      </div>
+      <div class="timeline-entry">
+        <span class="t-year">2016 – 2019</span>
+        <div class="t-role">Builder-in-Residence, Various</div>
+        <p class="t-desc">A handful of startups, a few side projects, and at least two glorious failures worth bragging about.</p>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <div class="fact">
-      <span class="fact-num">01</span>
-      <p class="fact-text">Building products from first principles — obsessing over the details others overlook.</p>
-    </div>
-    <div class="fact">
-      <span class="fact-num">02</span>
-      <p class="fact-text">Turning restless curiosity into ventures that challenge the default way of doing things.</p>
-    </div>
-    <div class="fact">
-      <span class="fact-num">03</span>
-      <p class="fact-text">Shipping fast, learning faster — always chasing the next interesting problem worth solving.</p>
-    </div>
+    <span class="footer-copy">© 2026 PV</span>
+    <a href="https://github.com/priteshvora1982" class="footer-link" target="_blank" rel="noopener">GitHub</a>
   </footer>
 
   <script>
